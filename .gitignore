@@ -1,0 +1,5 @@
+# Ignore folder named 'target'
+target/
+
+# Ignore file ImageHoster.iml
+ImageHoster.iml
