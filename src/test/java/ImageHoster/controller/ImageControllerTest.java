@@ -1,4 +1,4 @@
-/*
+
 package ImageHoster.controller;
 
 import ImageHoster.model.Image;
@@ -87,6 +87,7 @@ public class ImageControllerTest {
         image.setUser(user);
 
         Mockito.when(imageService.getImage(Mockito.anyInt())).thenReturn(image);
+        Mockito.when(imageService.getImageByTitleAndId(Mockito.anyString(), Mockito.anyInt())).thenReturn(image);
 
         this.mockMvc.perform(get("/images/1/new").session(session))
                 .andExpect(view().name("images/image"))
@@ -225,13 +226,21 @@ public class ImageControllerTest {
         image.setDescription("This image is for testing purpose");
         image.setUser(user1);
 
+        Tag tag = new Tag();
+        tag.setId(1);
+        tag.setName("dog");
 
+        List<Tag> tags = new ArrayList<>();
+        tags.add(tag);
+        image.setTags(tags);
         Mockito.when(imageService.getImage(Mockito.anyInt())).thenReturn(image);
 
-        this.mockMvc.perform(get("/editImage")
+       this.mockMvc.perform(get("/editImage")
                 .param("imageId", "1")
                 .session(session))
+                .andExpect(view().name("images/image"))
                 .andExpect(model().attribute("editError", "Only the owner of the image can edit the image"));
+
     }
 
     //This test checks the controller logic when the owner of the image sends the DELETE request to delete the image and checks whether the logic returns the html file 'images.html'
@@ -310,4 +319,4 @@ public class ImageControllerTest {
     }
 }
 
-*/
+
