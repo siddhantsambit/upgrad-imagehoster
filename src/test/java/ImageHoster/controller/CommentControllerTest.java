@@ -1,4 +1,4 @@
-/*
+
 package ImageHoster.controller;
 
 
@@ -65,4 +65,3 @@ public class CommentControllerTest {
                 .andExpect(redirectedUrl("/images/1/new"));
     }
 }
-*/
